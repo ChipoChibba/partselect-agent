@@ -1,0 +1,78 @@
+/* Floating button */
+.chatbot-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  width: 60px;
+  height: 60px;
+
+  background: #f8b400; /* PartSelect yellow */
+  color: #2f2f2f;
+
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  animation: botPulse 2s infinite;
+  z-index: 10000;
+}
+
+@keyframes botPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Main chat container */
+.chatbot-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  width: 380px;
+  height: 520px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border: 1px solid #dedede;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  z-index: 10000;
+}
+
+/* Header */
+.chatbot-header {
+  background: #f8b400;
+  padding: 12px 16px;
+
+  font-weight: 700;
+  color: #2f2f2f;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ChatWindow container */
+.chatbot-content {
+  flex: 1;
+  overflow: hidden; /* ensures ChatWindow scroll area works */
+}

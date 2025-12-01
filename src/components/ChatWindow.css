@@ -36,12 +36,13 @@
   animation: fadeIn 0.25s ease;
 }
 
-/* User bubble */
 .user-message {
-  background-color: #1b3875;    /* PartSelect dark blue */
+  align-self: flex-end;
+  background-color: #2a7a2e; /* PartSelect green */
   color: #ffffff;
   border-top-right-radius: 0;
 }
+
 
 /* Assistant bubble */
 .assistant-message {
@@ -118,4 +119,40 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* When ChatWindow is inside the floating chatbot */
+.chatbot-mode .input-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100% !important;
+
+  border-top: 1px solid #e0e0e0;
+  padding: 10px;
+  background: #ffffff;
+
+  display: flex;
+  gap: 8px;
+}
+
+.chatbot-mode .input-area input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+}
+
+.chatbot-mode .send-button {
+  background: #f8b400;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+
+/* Keep messages above the input area */
+.chatbot-mode .messages-container {
+  padding-bottom: 90px;
+  margin: 0;
 }
