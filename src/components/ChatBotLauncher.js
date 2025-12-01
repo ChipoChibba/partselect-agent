@@ -4,6 +4,7 @@ import "./ChatBotLauncher.css";
 
 function ChatBotLauncher() {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <>
@@ -16,15 +17,32 @@ function ChatBotLauncher() {
 
       {/* Chat popup */}
       {open && (
-        <div className="chatbot-container">
+        <div className={`chatbot-container ${expanded ? "expanded" : ""}`}>
           <div className="chatbot-header">
             <span>Instalily Assistant</span>
-            <button className="close-btn" onClick={() => setOpen(false)}>
-              ✕
-            </button>
+
+            <div className="header-buttons">
+              {/* Expand / collapse button */}
+              <button
+                className="expand-btn"
+                onClick={() => setExpanded(!expanded)}
+              >
+                {expanded ? "🡣" : "🡡"}
+              </button>
+
+              {/* Close button */}
+              <button
+                className="close-btn"
+                onClick={() => {
+                  setExpanded(false);
+                  setOpen(false);
+                }}
+              >
+                ✕
+              </button>
+            </div>
           </div>
 
-          {/* ChatWindow wrapped in .chatbot-mode for CSS overrides */}
           <div className="chatbot-content chatbot-mode">
             <ChatWindow />
           </div>

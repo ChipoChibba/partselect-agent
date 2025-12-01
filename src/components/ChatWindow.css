@@ -156,3 +156,16 @@
   padding-bottom: 90px;
   margin: 0;
 }
+
+.chatbot-mode .messages-container {
+  height: calc(100% - 70px);   /* fill space above input bar */
+  overflow-y: auto !important; /* ensure messages scroll */
+  padding: 16px !important;
+  margin: 0 !important;
+}
+
+.chatbot-mode .input-area {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

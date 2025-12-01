@@ -71,8 +71,49 @@
   cursor: pointer;
 }
 
-/* ChatWindow container */
+
+
+/* Chat content area */
 .chatbot-content {
   flex: 1;
-  overflow: hidden; /* ensures ChatWindow scroll area works */
+  overflow-y: auto;   /* enables scrolling */
+  overflow-x: hidden;
+  position: relative;
+}
+
+.chatbot-container {
+  resize: both;              /* 🔥 drag to resize */
+  overflow: hidden;
+  min-height: 400px;         /* prevent too small */
+  min-width: 300px;
+  max-height: 90vh;          /* prevent going off screen */
+  max-width: 90vw;
+}
+
+
+/* Header button group */
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Expand/collapse arrow */
+.expand-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Expanded (full-screen-like) state */
+.chatbot-container.expanded {
+  width: 95vw !important;
+  height: 90vh !important;
+  bottom: 2.5vh !important;
+  right: 2.5vw !important;
+  border-radius: 14px !important;
+  transition: all 0.25s ease;
+}
+.chatbot-container.expanded .expand-btn::after {
+  content: "🗗"; /* icon for collapse */
 }
