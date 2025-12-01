@@ -2,14 +2,16 @@ const express = require("express")
 const cors = require("cors")
 
 const app = express()
+const { agentRouter } = require("./agent/router")
 
 app.use(cors())
 app.use(express.json())
 
 //simplified endpoint 
-app.post("/api/chat", (req,res)=>{
-    const userMessage = req.body.message || "";
-    res.json({reply:`You said: ${userMessage}`}) 
+app.post("/api/chat", async (req,res)=>{
+    const userMessage = req.body.message;
+    const reply = await agentRouter(userMessage);
+    res.json({reply}) 
 });
 
 //server running
