@@ -14,6 +14,11 @@ function isInScope(question){
         "leaking",
         "broken",
         "not working",
+        "fix",
+        "troubleshoot",
+        "repair",
+        "search",
+        "find",
     ]
 
     return allowed.some(word => question.toLowerCase().includes(word));

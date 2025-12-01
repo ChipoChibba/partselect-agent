@@ -1,0 +1,16 @@
+{
+  "PS11752778": {
+    "title": "Refrigerator Evaporator Fan Motor",
+    "category": "Refrigerator",
+    "models": ["WDT780SAEM1", "WRS325FDAM04"],
+    "description": "Circulates air over the evaporator coils.",
+    "price": 45.99
+  },
+  "PS12345678": {
+    "title": "Dishwasher Water Inlet Valve",
+    "category": "Dishwasher",
+    "models": ["WDT780SAEM1"],
+    "description": "Controls water entry into the dishwasher.",
+    "price": 28.50
+  }
+}

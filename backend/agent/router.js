@@ -3,6 +3,7 @@ const { callLLM } = require("./llm");
 const { checkCompatibility } = require("./tools/compatibility");
 const { getInstallInstructions} = require("./tools/install");
 const { getTroubleshootInstructions } = require("./tools/troubleshoot");
+const { searchProducts } = require("./tools/search");
 
 
 async function agentRouter(userMessage){
@@ -34,6 +35,10 @@ async function agentRouter(userMessage){
 
     if (userMessage.toLowerCase().includes("not working") || userMessage.toLowerCase().includes("fix") ){
         return getTroubleshootInstructions(userMessage);
+    }
+
+    if (userMessage.toLowerCase().includes("search") || userMessage.toLowerCase().includes("find") ){
+        return searchProducts(userMessage);
     }
 
     //sample compatibility
