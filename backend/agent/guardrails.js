@@ -6,6 +6,7 @@ function isInScope(question){
         "refrigerator",
         "dishwasher",
         "part",
+        "install",
         "installation",
         "model",
         "compatible",
