@@ -2,6 +2,7 @@ const { isInScope } = require("./guardrails");
 const { callLLM } = require("./llm");
 const { checkCompatibility } = require("./tools/compatibility");
 const { getInstallInstructions} = require("./tools/install");
+const { getTroubleshootInstructions } = require("./tools/troubleshoot");
 
 
 async function agentRouter(userMessage){
@@ -32,7 +33,7 @@ async function agentRouter(userMessage){
 
 
     if (userMessage.toLowerCase().includes("not working") || userMessage.toLowerCase().includes("fix") ){
-        return callLLM ("Troubleshooting instructions: " + userMessage);
+        return getTroubleshootInstructions(userMessage);
     }
 
     //sample compatibility

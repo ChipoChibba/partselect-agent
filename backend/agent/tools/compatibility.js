@@ -15,8 +15,8 @@ function checkCompatibility(partNumber, modelNumber) {
   const isCompatible = models.includes(modelNumber.toUpperCase());
 
   return isCompatible
-    ? `✅ Yes, part **${partNumber}** is compatible with model **${modelNumber}**.`
-    : `❌ No, part **${partNumber}** is not compatible with model **${modelNumber}**.`;
+    ? `Yes, part **${partNumber}** is compatible with model **${modelNumber}**.`
+    : `No, part **${partNumber}** is not compatible with model **${modelNumber}**.`;
 }
 
 module.exports = { checkCompatibility };
