@@ -54,7 +54,8 @@ function ChatBotLauncher() {
             </div>
           </div>
 
-          <div className="chatbot-content chatbot-mode">
+          {/* TRUE FIX: THIS IS THE CORRECT WRAPPER */}
+          <div className="chatbot-body">
             <ChatWindow />
           </div>
         </div>
