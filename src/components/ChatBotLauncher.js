@@ -19,10 +19,22 @@ function ChatBotLauncher() {
       {open && (
         <div className={`chatbot-container ${expanded ? "expanded" : ""}`}>
           <div className="chatbot-header">
-            <span>Instalily Assistant</span>
 
+            {/* LOGO + TITLE */}
+            <div className="header-left">
+              <img
+                src="/partselect-logo.png"
+                alt="PartSelect Logo"
+                className="chatbot-logo"
+              />
+              <div className="header-text">
+                <div className="header-title">Patsy (AI Helper)</div>
+                <div className="header-subtitle">I'm here to help</div>
+              </div>
+            </div>
+
+            {/* Expand + Close Buttons */}
             <div className="header-buttons">
-              {/* Expand / collapse button */}
               <button
                 className="expand-btn"
                 onClick={() => setExpanded(!expanded)}
@@ -30,7 +42,6 @@ function ChatBotLauncher() {
                 {expanded ? "🡣" : "🡡"}
               </button>
 
-              {/* Close button */}
               <button
                 className="close-btn"
                 onClick={() => {
