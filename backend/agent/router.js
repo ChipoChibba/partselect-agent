@@ -1,68 +1,102 @@
 const { isInScope } = require("./guardrails");
 const { callLLM } = require("./llm");
 const { checkCompatibility } = require("./tools/compatibility");
-const { getInstallInstructions} = require("./tools/install");
+const { getInstallInstructions } = require("./tools/install");
 const { getTroubleshootInstructions } = require("./tools/troubleshoot");
 const { searchProducts } = require("./tools/search");
 
+// 🛑 Normalize ANY non-string response into a markdown string
+function normalizeResponse(output) {
+  if (typeof output === "string") return output;
 
-async function agentRouter(userMessage){
-    //check if user question is in scope
-    if (!isInScope(userMessage)){
-        return "Sorry, I can only assist you with refridgerator and dishwasher related questions.";
-    }
+  if (Array.isArray(output)) {
+    return output
+      .map(item => (typeof item === "string" ? item : JSON.stringify(item, null, 2)))
+      .join("\n\n");
+  }
 
-    //Intent of userMessage
-    if (userMessage.toLowerCase().includes("install") || userMessage.toLowerCase().includes("installation") ){
-        const partRegex = /(ps\d{5,})/i;// finds part numbers like PS11752778
+  if (typeof output === "object" && output !== null) {
+    return JSON.stringify(output, null, 2);
+  }
 
-         //Match 
-        const partMatch = userMessage.match(partRegex);
-        console.log({ partMatch }); //dbug
-
-        //check if partMatch exists
-        if (partMatch){
-            const part = partMatch[0].toUpperCase();
-            console.log({ part });
-
-            //call getInstallInstructions 
-            return getInstallInstructions(part);
-        }
-
-        return "{ partMatch } is not valid. Please provide valid part number. "
-    }
-
-
-    if (userMessage.toLowerCase().includes("not working") || userMessage.toLowerCase().includes("fix") ){
-        return getTroubleshootInstructions(userMessage);
-    }
-
-    if (userMessage.toLowerCase().includes("search") || userMessage.toLowerCase().includes("find") ){
-        return searchProducts(userMessage);
-    }
-
-    //sample compatibility
-    if (userMessage.toLowerCase().includes("compatible")) {
-    const partRegex = /(ps\d{5,})/i;// finds part numbers like PS11752778
-    const modelRegex = /\b(?!(PS))(?=[A-Z]*\d)(?=[A-Z0-9]{4,})[A-Z0-9]+\b/i; // simple model number regex
-
-    const partMatch = userMessage.match(partRegex);
-    const modelMatch = userMessage.match(modelRegex);
-
-    if (partMatch && modelMatch) {
-        const part = partMatch[1].toUpperCase();
-        const model = modelMatch[0].toUpperCase();
-        //console.log({part}, {model}); // debugging
-        return checkCompatibility(part, model);
-    }
-
-    return "To check compatibility, please provide a part number and a model number.";
+  return String(output);
 }
 
-    else{
-        return callLLM ("General Product help:" + userMessage);
+
+async function agentRouter(userMessage) {
+  const lower = userMessage.toLowerCase();
+
+  // Scope guard
+  if (!isInScope(userMessage)) {
+    return "Sorry, I can only assist with refrigerator and dishwasher related questions.";
+  }
+
+  // ---- INSTALLATION ----
+  if (lower.includes("install") || lower.includes("installation")) {
+    const partMatch = userMessage.match(/(ps\d{5,})/i);
+
+    if (!partMatch) {
+      return "Please provide a valid part number (e.g., PS11752778).";
     }
 
+    const part = partMatch[0].toUpperCase();
+    return getInstallInstructions(part);
+  }
+
+  // ---- SYMPTOM-BASED SEARCH ----
+  const symptomKeywords = [
+    "not cleaning",
+    "poor cleaning",
+    "leaking",
+    "frost",
+    "buildup",
+    "warm",
+    "not cooling",
+    "no water",
+    "not draining",
+    "sagging",
+    "not dispensing"
+  ];
+
+  if (symptomKeywords.some(k => lower.includes(k))) {
+    // Force symptom mode
+    return searchProducts("symptom:" + userMessage);
+  }
+
+  // ---- TROUBLESHOOT ----
+  if (lower.includes("not working") || lower.includes("fix")) {
+    return getTroubleshootInstructions(userMessage);
+  }
+
+  // ---- GENERAL SEARCH ----
+  if (lower.includes("search") || lower.includes("find") || lower.includes("look up")) {
+    const results = searchProducts(userMessage);
+
+    // If search returned array → join as markdown
+    if (Array.isArray(results)) {
+      return results.join("\n\n");
+    }
+
+    return results;
+  }
+
+  // ---- COMPATIBILITY ----
+  if (lower.includes("compatible") || lower.includes("fit") || lower.includes("work with")) {
+    const partMatch = userMessage.match(/(ps\d{5,})/i);
+    const modelMatch = userMessage.match(/\b[A-Z0-9]{4,}\b/i);
+
+    if (!partMatch || !modelMatch) {
+      return "Please provide both a part number and a model number.";
+    }
+
+    const part = partMatch[0].toUpperCase();
+    const model = modelMatch[0].toUpperCase();
+
+    return checkCompatibility(part, model);
+  }
+
+  // ---- FALLBACK ----
+  return callLLM("General Product help: " + userMessage);
 }
 
-module.exports = {agentRouter}
+module.exports = { agentRouter };
