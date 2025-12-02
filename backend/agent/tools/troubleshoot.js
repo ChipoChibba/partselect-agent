@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+//func to get troubleshooting instructions
 function getTroubleshootInstructions(issueDescription){
     try{
 

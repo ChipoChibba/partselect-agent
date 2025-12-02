@@ -4,6 +4,7 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+//Calls the LLM with a prompt and returns the response
 async function callLLM(prompt) {
   try {
     const response = await client.chat.completions.create({

@@ -1,6 +1,6 @@
-// backend/agent/guardrails.js
 const { classifyIntent } = require("./classifyIntent");
 
+//checks if message is in scope
 async function isInScope(userMessage) {
   try {
     // Auto-allow any message with a valid PS number

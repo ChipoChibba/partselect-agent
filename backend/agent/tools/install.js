@@ -1,19 +1,19 @@
-// backend/agent/tools/install.js
 const fs = require("fs");
 const path = require("path");
 
 const DATA_PATH = path.join(__dirname, "..", "..", "data", "product_data.json");
 
+// func for safe loading
 function loadData() {
   try {
     return JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
   } catch (err) {
-    console.error("❌ Failed to load product_data.json:", err.message);
+    console.error(" Failed to load product_data.json:", err.message);
     return {};
   }
 }
 
-// Small library of more specific steps for some parts
+// Small library of more specific steps for some parts generated from ChatGPT (not comprehensive)
 const STATIC_STEPS = {
   PS10010001: [
     "Unplug the refrigerator from power.",
@@ -33,16 +33,17 @@ const STATIC_STEPS = {
     "Secure them with the supplied clips or screws.",
     "Reinstall the rack on the rails and ensure it slides smoothly.",
   ],
-  // Add more known parts as desired...
+
 };
 
+// Formats installation instructions in markdown
 function formatInstallMarkdown(partNumber, item, steps) {
   const titleLine = item
-    ? `## Installation Instructions for ${item.title} (${partNumber})\n\n`
-    : `## Installation Instructions for ${partNumber}\n\n`;
+    ? `### Installation Instructions for ${item.title} (${partNumber})\n\n`
+    : `### Installation Instructions for ${partNumber}\n\n`;
 
   const safety =
-    "⚠️ **Safety first:** Always disconnect power to the appliance before beginning any repair. " +
+    "**Safety first:** Always disconnect power to the appliance before beginning any repair. " +
     "If you are not comfortable performing these steps, contact a qualified technician.\n\n";
 
   const models =
@@ -66,8 +67,9 @@ async function getInstallInstructions(partNumber) {
   const data = loadData();
   const item = data[partNumber];
 
+  // part not found
   if (!item) {
-    return `❌ I couldn't find any data for part **${partNumber}**. Please double-check the part number.`;
+    return ` I couldn't find any data for part **${partNumber}**. Please double-check the part number.`;
   }
 
   // Use specific static steps if we have them

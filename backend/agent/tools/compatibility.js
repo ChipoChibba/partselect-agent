@@ -1,59 +1,64 @@
-// backend/agent/tools/compatibility.js
 const fs = require("fs");
 const path = require("path");
 
 const DATA_PATH = path.join(__dirname, "..", "..", "data", "product_data.json");
 
-// ---------- Safe Loader ----------
+// func for safe loading 
 function loadData() {
   try {
     return JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
   } catch (err) {
-    console.error("❌ Failed to load product_data.json:", err.message);
+    console.error(" Failed to load product_data.json:", err.message);
     return {};
   }
 }
 
+//normalizing func
 function normalize(str) {
   return str ? str.toString().trim().toUpperCase() : "";
 }
 
-// ---------- 1️⃣ Part → Model Compatibility ----------
+// ---------- Part → Model Compatibility ----------
 function checkPartToModel(partNumber, modelNumber) {
   const data = loadData();
   const item = data[partNumber];
 
+  // part not found
   if (!item) {
-    return `❌ Part number **${partNumber}** not found.`;
+    return ` Part number **${partNumber}** not found.`;
   }
 
+  // no model provided
   if (!modelNumber) {
-    return `⚠️ Please specify a model number to check compatibility with **${partNumber}**.`;
+    return ` Please specify a model number to check compatibility with **${partNumber}**.`;
   }
 
   const models = item.models?.map((m) => m.toUpperCase()) || [];
 
+  // compatible
   if (models.includes(modelNumber.toUpperCase())) {
-    return `✅ Yes — **${partNumber} (${item.title})** is listed as compatible with **model ${modelNumber}**.`;
+    return `Yes — **${partNumber} (${item.title})** is listed as compatible with **model ${modelNumber}**.`;
   }
 
   return (
-    `⚠️ **${modelNumber}** is not listed as compatible with **${partNumber}**.\n\n` +
+    `**${modelNumber}** is not listed as compatible with **${partNumber}**.\n\n` +
     `Models this part fits:\n${item.models?.join(", ") || "No data available."}`
   );
 }
 
-// ---------- 2️⃣ Part → What Models Does This Fit? ----------
+// ---------- Part → What Models Does This Fit? ----------
 function whatModelsFitPart(partNumber) {
   const data = loadData();
   const item = data[partNumber];
 
+  // response if part not found
   if (!item) {
-    return `❌ Could not find part **${partNumber}**.`;
+    return `Could not find part **${partNumber}**.`;
   }
 
+  // response if no models listed
   if (!item.models || item.models.length === 0) {
-    return `⚠️ No compatibility data available for **${partNumber}**.`;
+    return `No compatibility data available for **${partNumber}**.`;
   }
 
   return (
@@ -62,17 +67,19 @@ function whatModelsFitPart(partNumber) {
   );
 }
 
-// ---------- 3️⃣ Model → What Parts Fit This Model? ----------
+// ---------- What Parts Fit This Model? ----------
 function partsCompatibleWithModel(modelNumber) {
   const data = loadData();
   const model = normalize(modelNumber);
 
+  // response if no model provided
   if (!model) {
-    return `⚠️ Please provide a model number.`;
+    return `Please provide a model number.`;
   }
 
   const matches = [];
 
+  // find all parts that are compatible w this model
   for (const [part, item] of Object.entries(data)) {
     const models = item.models?.map((m) => m.toUpperCase()) || [];
     if (models.includes(model)) {
@@ -80,8 +87,9 @@ function partsCompatibleWithModel(modelNumber) {
     }
   }
 
+  // no matches found
   if (matches.length === 0) {
-    return `❌ No parts found that are listed as compatible with model **${modelNumber}**.`;
+    return ` No parts found that are listed as compatible with model **${modelNumber}**.`;
   }
 
   return (
@@ -120,8 +128,9 @@ function handleCompatibilityQuery(partNumber, modelNumber, originalText) {
     return partsCompatibleWithModel(model);
   }
 
+// response if no part or model provided
   return (
-    `⚠️ Please provide either:\n` +
+    `Please provide either:\n` +
     `- A part number (PSXXXXX), or\n` +
     `- A model number (WDT…, WRS…, etc.)`
   );

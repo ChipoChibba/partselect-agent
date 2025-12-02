@@ -4,17 +4,17 @@ const path = require("path");
 
 const DATA_PATH = path.join(__dirname, "..", "..", "data", "product_data.json");
 
-// ---------------- LOAD PRODUCT DATA ----------------
+// loads product data safely
 function loadData() {
   try {
     return JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
   } catch (err) {
-    console.error("❌ Failed to load product data:", err.message);
+    console.error("Failed to load product data:", err.message);
     return {};
   }
 }
 
-// ---------------- CLEANING HELPERS ----------------
+// cleans input text for keyword extraction
 function clean(text) {
   return text
     .toLowerCase()
@@ -23,7 +23,7 @@ function clean(text) {
     .trim();
 }
 
-// ---------------- SCORING LOGIC ----------------
+// scores an item based on keywords and symptom phrase
 function scoreItem(item, partNumber, keywords, fullSymptomPhrase) {
   const haystack =
     `${partNumber} ${item.title} ${item.description} ${item.category} ${item.symptoms?.join(" ") || ""}`
@@ -31,7 +31,7 @@ function scoreItem(item, partNumber, keywords, fullSymptomPhrase) {
 
   let score = 0;
 
-  // 1) Exact full symptom phrase match → strongest signal
+  // Full symptom phrase match 
   if (fullSymptomPhrase && item.symptoms) {
     const symptomsLower = item.symptoms.map(s => s.toLowerCase());
     if (symptomsLower.some(s => s.includes(fullSymptomPhrase))) {
@@ -39,7 +39,7 @@ function scoreItem(item, partNumber, keywords, fullSymptomPhrase) {
     }
   }
 
-  // 2) Keyword scoring fallback for general queries
+  // Keyword matches
   for (const kw of keywords) {
     if (item.title.toLowerCase().includes(kw)) score += 25;
     if (item.symptoms?.some(s => s.toLowerCase().includes(kw))) score += 20;
@@ -51,7 +51,7 @@ function scoreItem(item, partNumber, keywords, fullSymptomPhrase) {
   return score;
 }
 
-// ---------------- MAIN SEARCH FUNCTION ----------------
+// main search function
 function searchProducts(query) {
   const data = loadData();
 
@@ -62,7 +62,7 @@ function searchProducts(query) {
   const keywords = cleaned.split(" ").filter(Boolean);
   const fullSymptomPhrase = isSymptom ? cleaned : null;
 
-  // ---------------- EXACT PART NUMBER LOOKUP ----------------
+  //exact part number match
   const exactMatch = query.toUpperCase().match(/PS\d{5,}/);
   if (exactMatch) {
     const partNumber = exactMatch[0];
@@ -71,7 +71,7 @@ function searchProducts(query) {
     }
   }
 
-  // ---------------- SCORE + FILTER RESULTS ----------------
+  // scored and filter results 
   const scored = [];
 
   for (const [partNumber, item] of Object.entries(data)) {
@@ -87,11 +87,11 @@ function searchProducts(query) {
     return [`No products found matching "${cleaned}".`];
   }
 
-  // Return top 3 always (general search + symptom search)
+  // Return top 3 always 
   return scored.slice(0, 3).map(r => formatResult(r.partNumber, r.item));
 }
 
-// ---------------- FORMAT OUTPUT ----------------
+// formats a single search result
 function formatResult(partNumber, item) {
   return `
 ### 🔧 ${item.title}

@@ -1,11 +1,10 @@
-// backend/agent/classifyIntent.js
 const { callLLM } = require("./llm");
 
-/**
- * Uses LLM to classify user intent with STRICT reasoning.
- * This forces the model to return EXACT category keywords.
- */
+
+// Uses LLM to classify user intent with STRICT reasoning.
+//This forces the model to return EXACT category keywords.
 async function classifyIntent(userMessage) {
+  //Prompt for intent classification
   const prompt = `
 You are an intent classifier for an appliance parts assistant.
 Your job is ONLY to return one of the following labels:

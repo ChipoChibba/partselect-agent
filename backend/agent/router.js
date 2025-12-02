@@ -8,9 +8,9 @@ const { getInstallInstructions } = require("./tools/install");
 const { getTroubleshootInstructions } = require("./tools/troubleshoot");
 const { searchProducts } = require("./tools/search");
 
-// --------------------------------------------------
-// Helpers
-// --------------------------------------------------
+//HELPER FUNCTIONS
+
+//Normalizes different response types to string
 function normalizeResponse(output) {
   if (typeof output === "string") return output;
   if (Array.isArray(output)) return output.join("\n\n");
@@ -18,11 +18,13 @@ function normalizeResponse(output) {
   return String(output);
 }
 
+//Extracts part number from text
 function extractPartNumber(text) {
   const match = text.match(/(ps\d{5,})/i);
   return match ? match[1].toUpperCase() : null;
 }
 
+//Extracts model number from text
 function extractModelNumber(text) {
   const words = text.split(/[\s,?\.]+/);
 
@@ -34,9 +36,7 @@ function extractModelNumber(text) {
   return null;
 }
 
-// --------------------------------------------------
-// SMART SCOPE (Dishwasher ALWAYS allowed)
-// --------------------------------------------------
+//heuristic scope check 
 function heuristicInScope(lower) {
   return (
     lower.includes("fridge") ||
@@ -50,9 +50,8 @@ function heuristicInScope(lower) {
   );
 }
 
-// --------------------------------------------------
-// Intent keyword helpers
-// --------------------------------------------------
+
+//checks if user wants installation help
 function wantsInstall(lower) {
   return (
     lower.includes("install") ||
@@ -63,6 +62,7 @@ function wantsInstall(lower) {
   );
 }
 
+//checks if user wants compatibility info
 function wantsCompatibility(lower) {
   return (
     lower.includes("compatible") ||
@@ -75,6 +75,7 @@ function wantsCompatibility(lower) {
   );
 }
 
+//checks if user is describing a symptom
 function wantsSymptom(lower) {
   return (
     lower.includes("poor cleaning") ||
@@ -87,33 +88,44 @@ function wantsSymptom(lower) {
   );
 }
 
-// --------------------------------------------------
-// 🔥 FINAL — The router
-// --------------------------------------------------
+//Router Logic
 async function agentRouter(userMessage) {
   const lower = userMessage.toLowerCase();
 
-  // ------------------------------------------------------
-  // 1️⃣ SYMPTOMS MUST BE FIRST (fixes 5.2, 6.1, 6.3)
-  // ------------------------------------------------------
+  // Conversational responses (bypass scope)
+  const greetingWords = ["hi", "hello", "hey", "yo", "greetings", "sup"];
+  const thanksWords = ["thank you", "thanks", "thx", "appreciate it", "ty"];
+  const closingWords = ["bye", "goodbye", "see you", "farewell"];
+
+  //default response for greetings 
+  if (greetingWords.some(w => lower === w || lower.startsWith(w))) {
+    return "Hi! How can I help you with refrigerator or dishwasher parts today?";
+  }
+
+  //default response for thanking
+  if (thanksWords.some(w => lower.includes(w))) {
+    return "You're welcome! If you need help checking compatibility or finding a part, just let me know.";}
+
+    //default response for closings
+  if (closingWords.some(w => lower.includes(w))) {
+    return "Goodbye! Feel free to reach out if you need assistance with refrigerator or dishwasher parts.";}
+
+  // Checking symptoms 
   if (wantsSymptom(lower)) {
     return normalizeResponse(
       await searchProducts("symptom:" + userMessage)
     );
   }
 
-  // ------------------------------------------------------
-  // 2️⃣ Extract part + model
-  // ------------------------------------------------------
+ //Extract part and model numbers
   const partNumber = extractPartNumber(userMessage);
   const modelNumber = extractModelNumber(userMessage);
 
+  //Determine Intent of users message
   const needsInstall = wantsInstall(lower);
   const needsCompat = wantsCompatibility(lower);
 
-  // ------------------------------------------------------
-  // 3️⃣ Handle BOTH install + compatibility
-  // ------------------------------------------------------
+  //Install and Compatibility combined logic
   if (partNumber && needsInstall && needsCompat) {
     return (
       `I see you're asking about **${partNumber}** and mentioned both installation and compatibility.\n\n` +
@@ -121,18 +133,15 @@ async function agentRouter(userMessage) {
     );
   }
 
-  // ------------------------------------------------------
-  // 4️⃣ Compatibility logic
-  // ------------------------------------------------------
+//Compatibility logic
   if (needsCompat) {
     const result = await handleCompatibilityQuery(partNumber, modelNumber, userMessage);
     return normalizeResponse(result);
   }
 
-  // ------------------------------------------------------
-  // 5️⃣ Installation logic
-  // ------------------------------------------------------
+  // Installation logic
   if (needsInstall) {
+    //check if valid part number is provided
     if (!partNumber) {
       return "Please include a valid part number such as **PS10010001**.";
     }
@@ -140,40 +149,41 @@ async function agentRouter(userMessage) {
     return normalizeResponse(result);
   }
 
-  // ------------------------------------------------------
-  // 6️⃣ LLM Intent classification fallback
-  // ------------------------------------------------------
+  //LLM Intent Classification
   let intent = "general";
   try {
     intent = await classifyIntent(userMessage);
   } catch (_) {}
 
+  //search
   if (intent === "symptom_search") {
     return normalizeResponse(await searchProducts("symptom:" + userMessage));
   }
 
+  //compatibility
   if (intent === "compatibility") {
     return normalizeResponse(
       await handleCompatibilityQuery(partNumber, modelNumber, userMessage)
     );
   }
 
+  //installation
   if (intent === "installation") {
     if (!partNumber) return "Please include a valid part number.";
     return normalizeResponse(await getInstallInstructions(partNumber));
   }
 
+  //troubleshoot
   if (intent === "troubleshoot") {
     return normalizeResponse(await getTroubleshootInstructions(userMessage));
   }
 
+  //general search
   if (intent === "general_search") {
     return normalizeResponse(searchProducts(userMessage));
   }
 
-  // ------------------------------------------------------
-  // 7️⃣ SCOPE CHECK (LAST)
-  // ------------------------------------------------------
+ //check if user query in scope
   let ok = true;
   try {
     ok = await isInScope(userMessage);
@@ -181,13 +191,12 @@ async function agentRouter(userMessage) {
     ok = true;
   }
 
+  //not in sope
   if (!ok && !heuristicInScope(lower)) {
     return "Sorry, I can only help with refrigerator and dishwasher related questions.";
   }
 
-  // ------------------------------------------------------
-  // 8️⃣ Final LLM fallback
-  // ------------------------------------------------------
+ //default general help
   return await callLLM("General Product Help:\n" + userMessage);
 }
 
