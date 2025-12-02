@@ -1,27 +1,19 @@
-function isInScope(question){
+// backend/agent/guardrails.js
+const { classifyIntent } = require("./classifyIntent");
 
-    // list of words in scope
-    const allowed = [
-        "fridge",
-        "refrigerator",
-        "dishwasher",
-        "part",
-        "install",
-        "installation",
-        "model",
-        "compatible",
-        "ice maker",
-        "leaking",
-        "broken",
-        "not working",
-        "fix",
-        "troubleshoot",
-        "repair",
-        "search",
-        "find",
-    ]
+async function isInScope(userMessage) {
+  try {
+    // Auto-allow any message with a valid PS number
+    if (/(ps\d{5,})/i.test(userMessage)) return true;
 
-    return allowed.some(word => question.toLowerCase().includes(word));
+    const result = await classifyIntent(userMessage);
+
+    return result === "IN_SCOPE";
+  } catch (err) {
+    console.error("Guardrail error:", err.message);
+    // fail-open: don’t block user
+    return true;
+  }
 }
 
-module.exports =  { isInScope };
+module.exports = { isInScope };

@@ -5,9 +5,18 @@
     "manufacturer": "W11024089",
     "description": "This evaporator fan motor circulates cool air over the refrigerator's evaporator coils, ensuring even cooling throughout the freezer and fridge compartments.",
     "price": 46.99,
-    "symptoms": ["Fridge not cooling", "Freezer too warm", "Frost buildup"],
-    "models": ["WRS325FDAM04", "ED5KVEXVB01", "GS6SHEXNQ00"],
-    "url": "https://www.partselect.com/PS10010001-Refrigerator-Fan-Motor.htm"
+    "symptoms": [
+      "Fridge not cooling",
+      "Freezer too warm",
+      "Frost buildup"
+    ],
+    "models": [
+      "WRS325FDAM04",
+      "ED5KVEXVB01",
+      "GS6SHEXNQ00"
+    ],
+    "url": "https://www.partselect.com/PS10010001-Refrigerator-Fan-Motor.htm",
+    "llm_installation": "### Installation Instructions for Refrigerator Evaporator Fan Motor\n\n1. **Disconnect power before beginning installation.** Unplug the refrigerator from the wall outlet to ensure safety while working on the appliance.\n\n2. **Remove the freezer compartment cover.** Open the freezer door and locate the cover that conceals the evaporator fan. Use a screwdriver to remove any screws and carefully take off the cover.\n\n3. **Remove old fan motor.** Locate the evaporator fan motor. Disconnect any wiring harness connected to the motor by gently pulling it apart. Unscrew the motor from its mounting bracket and carefully remove it from the compartment.\n\n4. **Install the new fan motor.** Position the new evaporator fan motor (Part Number: PS10010001) into the mounting bracket. Secure it with screws to ensure it is firmly in place.\n\n5. **Reconnect the wiring harness.** Attach the new motor’s wiring harness by connecting it to the corresponding connector. Make sure the connection is secure.\n\n6. **Replace the freezer compartment cover.** Reinstall the cover you previously removed, securing it with screws.\n\n7. **Check for obstructions.** Before closing the freezer door, ensure that there are no loose wires or obstructions around the newly installed fan motor.\n\n8. **Restore power to the refrigerator.** Plug the refrigerator back into the wall outlet to restore power.\n\n9. **Monitor the refrigerator's performance.** Allow the fridge and freezer compartments to cool and check for proper airflow and temperature after installation.\n\n10. **If unsure, consult a licensed technician.** If you experience any issues or if the refrigerator does not function properly after installation, seek assistance from a qualified technician."
   },
   "PS10010002": {
     "title": "Refrigerator Defrost Thermostat",
@@ -15,8 +24,16 @@
     "manufacturer": "WP10442411",
     "description": "This defrost thermostat regulates the temperature inside your refrigerator's evaporator coil to prevent ice buildup.",
     "price": 18.79,
-    "symptoms": ["Ice buildup", "Fridge too warm", "Unit runs continuously"],
-    "models": ["W8RXEGMWB00", "ET8CHMXKB04", "WRF535SMBM00"],
+    "symptoms": [
+      "Ice buildup",
+      "Fridge too warm",
+      "Unit runs continuously"
+    ],
+    "models": [
+      "W8RXEGMWB00",
+      "ET8CHMXKB04",
+      "WRF535SMBM00"
+    ],
     "url": "https://www.partselect.com/PS10010002-Refrigerator-Defrost-Thermostat.htm"
   },
   "PS10010003": {
@@ -25,8 +42,16 @@
     "manufacturer": "WPW10408179",
     "description": "Controls the flow of water to the ice maker and water dispenser. A failing valve may leak, clog, or stop the ice maker from producing ice.",
     "price": 39.95,
-    "symptoms": ["Leaking", "Ice maker not producing ice", "Water dispenser slow"],
-    "models": ["KRFF507ESS01", "WRF736SDAM14", "WRT311FZDW00"],
+    "symptoms": [
+      "Leaking",
+      "Ice maker not producing ice",
+      "Water dispenser slow"
+    ],
+    "models": [
+      "KRFF507ESS01",
+      "WRF736SDAM14",
+      "WRT311FZDW00"
+    ],
     "url": "https://www.partselect.com/PS10010003-Refrigerator-Water-Inlet-Valve.htm"
   },
   "PS10010004": {
@@ -35,8 +60,15 @@
     "manufacturer": "W10613606",
     "description": "The start relay helps the refrigerator compressor start up. A broken relay may cause clicking sounds or prevent cooling entirely.",
     "price": 27.49,
-    "symptoms": ["Clicking noise", "Fridge not cooling", "Compressor not running"],
-    "models": ["WRT318FZDW05", "WRT549SZDM00"],
+    "symptoms": [
+      "Clicking noise",
+      "Fridge not cooling",
+      "Compressor not running"
+    ],
+    "models": [
+      "WRT318FZDW05",
+      "WRT549SZDM00"
+    ],
     "url": "https://www.partselect.com/PS10010004-Refrigerator-Start-Relay.htm"
   },
   "PS10010005": {
@@ -44,9 +76,16 @@
     "category": "Refrigerator",
     "manufacturer": "W10830055",
     "description": "This flexible magnetic gasket seals the refrigerator door shut to maintain a consistent interior temperature and improve energy efficiency.",
-    "price": 89.00,
-    "symptoms": ["Door not sealing", "Frost buildup", "Warm temperatures"],
-    "models": ["WRT111SFDM03", "GX5FHTXVQ02"],
+    "price": 89,
+    "symptoms": [
+      "Door not sealing",
+      "Frost buildup",
+      "Warm temperatures"
+    ],
+    "models": [
+      "WRT111SFDM03",
+      "GX5FHTXVQ02"
+    ],
     "url": "https://www.partselect.com/PS10010005-Refrigerator-Door-Gasket.htm"
   },
   "PS10010006": {
@@ -55,8 +94,15 @@
     "manufacturer": "WPW10384183",
     "description": "This thermistor monitors fresh food and freezer temperature and provides feedback to the control board.",
     "price": 14.35,
-    "symptoms": ["Incorrect temperature", "Freezer too warm", "Food freezing"],
-    "models": ["WRF560SEHZ00", "WRB329DMBM00"],
+    "symptoms": [
+      "Incorrect temperature",
+      "Freezer too warm",
+      "Food freezing"
+    ],
+    "models": [
+      "WRF560SEHZ00",
+      "WRB329DMBM00"
+    ],
     "url": "https://www.partselect.com/PS10010006-Refrigerator-Temperature-Sensor.htm"
   },
   "PS10010007": {
@@ -65,8 +111,15 @@
     "manufacturer": "WPW10300022",
     "description": "A complete replacement ice maker assembly for refrigerators with failed harvest cycles or stuck ejector arms.",
     "price": 119.95,
-    "symptoms": ["Ice maker not making ice", "Ice jammed", "Leaking"],
-    "models": ["ED5KVEXVQ01", "GD5SHAXNQ02"],
+    "symptoms": [
+      "Ice maker not making ice",
+      "Ice jammed",
+      "Leaking"
+    ],
+    "models": [
+      "ED5KVEXVQ01",
+      "GD5SHAXNQ02"
+    ],
     "url": "https://www.partselect.com/PS10010007-Refrigerator-Ice-Maker-Assembly.htm"
   },
   "PS10010008": {
@@ -74,9 +127,16 @@
     "category": "Refrigerator",
     "manufacturer": "W10124096",
     "description": "Circulates air across the condenser coils to dissipate heat and maintain proper cooling performance.",
-    "price": 48.50,
-    "symptoms": ["Loud noise", "Overheating", "Poor cooling"],
-    "models": ["GS6NBEXRL00", "WRS322FDAM04"],
+    "price": 48.5,
+    "symptoms": [
+      "Loud noise",
+      "Overheating",
+      "Poor cooling"
+    ],
+    "models": [
+      "GS6NBEXRL00",
+      "WRS322FDAM04"
+    ],
     "url": "https://www.partselect.com/PS10010008-Refrigerator-Condenser-Fan-Motor.htm"
   },
   "PS10010009": {
@@ -84,9 +144,16 @@
     "category": "Refrigerator",
     "manufacturer": "WPW10384973",
     "description": "This replacement crisper drawer fits many refrigerator models and helps maintain humidity levels for produce.",
-    "price": 54.00,
-    "symptoms": ["Broken drawer", "Difficulty sliding", "Cracked plastic"],
-    "models": ["WRF535SMBM00", "WRB322DMBM01"],
+    "price": 54,
+    "symptoms": [
+      "Broken drawer",
+      "Difficulty sliding",
+      "Cracked plastic"
+    ],
+    "models": [
+      "WRF535SMBM00",
+      "WRB322DMBM01"
+    ],
     "url": "https://www.partselect.com/PS10010009-Refrigerator-Crisper-Drawer.htm"
   },
   "PS10010010": {
@@ -95,19 +162,30 @@
     "manufacturer": "W10311524",
     "description": "A high-efficiency carbon air filter that reduces odors and improves overall air circulation in the refrigerator.",
     "price": 14.99,
-    "symptoms": ["Bad odors", "Poor air circulation"],
-    "models": ["KRFC704FBS00"],
+    "symptoms": [
+      "Bad odors",
+      "Poor air circulation"
+    ],
+    "models": [
+      "KRFC704FBS00"
+    ],
     "url": "https://www.partselect.com/PS10010010-Refrigerator-Air-Filter.htm"
   },
-
   "PS20020001": {
     "title": "Dishwasher Upper Rack Adjuster Kit – Left & Right",
     "category": "Dishwasher",
     "manufacturer": "W10712395",
     "description": "This kit allows the dishwasher's upper rack to slide smoothly on its track and includes left and right adjusters with wheels.",
     "price": 52.29,
-    "symptoms": ["Rack won't slide", "Upper rack sagging", "Wheels broken"],
-    "models": ["WDT780SAEM1", "WDF520PADM7"],
+    "symptoms": [
+      "Rack won't slide",
+      "Upper rack sagging",
+      "Wheels broken"
+    ],
+    "models": [
+      "WDT780SAEM1",
+      "WDF520PADM7"
+    ],
     "url": "https://www.partselect.com/PS20020001-Dishwasher-Upper-Rack-Adjuster-Kit.htm"
   },
   "PS20020002": {
@@ -115,9 +193,16 @@
     "category": "Dishwasher",
     "manufacturer": "WPW10327249",
     "description": "Controls water entry into the dishwasher. A failing valve may leak, restrict flow, or stop the cycle from filling.",
-    "price": 38.00,
-    "symptoms": ["Not filling", "Leaking", "Low water pressure"],
-    "models": ["KUDS30IXBL4", "WDT720PADM3"],
+    "price": 38,
+    "symptoms": [
+      "Not filling",
+      "Leaking",
+      "Low water pressure"
+    ],
+    "models": [
+      "KUDS30IXBL4",
+      "WDT720PADM3"
+    ],
     "url": "https://www.partselect.com/PS20020002-Dishwasher-Water-Inlet-Valve.htm"
   },
   "PS20020003": {
@@ -126,8 +211,15 @@
     "manufacturer": "W10518394",
     "description": "Heats the water and dries dishes. Signs of failure include wet dishes, poor cleaning, or tripped breakers.",
     "price": 34.99,
-    "symptoms": ["Dishes not drying", "Poor cleaning", "Burning smell"],
-    "models": ["WDF520PADM7", "MDB8959SKZ0"],
+    "symptoms": [
+      "Dishes not drying",
+      "Poor cleaning",
+      "Burning smell"
+    ],
+    "models": [
+      "WDF520PADM7",
+      "MDB8959SKZ0"
+    ],
     "url": "https://www.partselect.com/PS20020003-Dishwasher-Heating-Element.htm"
   },
   "PS20020004": {
@@ -136,8 +228,15 @@
     "manufacturer": "WPW10491331",
     "description": "Rotating spray arm that distributes water through the dishwasher tub to clean dishes effectively.",
     "price": 19.89,
-    "symptoms": ["Poor cleaning", "No water spray", "Clogging"],
-    "models": ["WDT750SAHZ0", "KDFE104HPS1"],
+    "symptoms": [
+      "Poor cleaning",
+      "No water spray",
+      "Clogging"
+    ],
+    "models": [
+      "WDT750SAHZ0",
+      "KDFE104HPS1"
+    ],
     "url": "https://www.partselect.com/PS20020004-Dishwasher-Spray-Arm.htm"
   },
   "PS20020005": {
@@ -145,9 +244,16 @@
     "category": "Dishwasher",
     "manufacturer": "WPW10348269",
     "description": "This drain pump expels water from the dishwasher tub and is essential for wash and rinse cycles.",
-    "price": 74.50,
-    "symptoms": ["Not draining", "Standing water", "Pump humming"],
-    "models": ["WDF330PAHB", "MDB4949SKZ"],
+    "price": 74.5,
+    "symptoms": [
+      "Not draining",
+      "Standing water",
+      "Pump humming"
+    ],
+    "models": [
+      "WDF330PAHB",
+      "MDB4949SKZ"
+    ],
     "url": "https://www.partselect.com/PS20020005-Dishwasher-Drain-Pump.htm"
   },
   "PS20020006": {
@@ -155,9 +261,15 @@
     "category": "Dishwasher",
     "manufacturer": "WPW10497235",
     "description": "Creates a watertight seal around the dishwasher door to prevent leaks during wash cycles.",
-    "price": 28.00,
-    "symptoms": ["Leaking", "Door not sealing"],
-    "models": ["WDF520PADT", "KDFE104DSS"],
+    "price": 28,
+    "symptoms": [
+      "Leaking",
+      "Door not sealing"
+    ],
+    "models": [
+      "WDF520PADT",
+      "KDFE104DSS"
+    ],
     "url": "https://www.partselect.com/PS20020006-Dishwasher-Door-Gasket.htm"
   },
   "PS20020007": {
@@ -166,8 +278,15 @@
     "manufacturer": "WPW10195039",
     "description": "Monitors the water level in the tub to prevent overfilling and activates the inlet valve.",
     "price": 16.45,
-    "symptoms": ["Overfilling", "Not filling", "Won't start"],
-    "models": ["WDF320PADB0", "MDB8959SFZ4"],
+    "symptoms": [
+      "Overfilling",
+      "Not filling",
+      "Won't start"
+    ],
+    "models": [
+      "WDF320PADB0",
+      "MDB8959SFZ4"
+    ],
     "url": "https://www.partselect.com/PS20020007-Dishwasher-Float-Switch.htm"
   },
   "PS20020008": {
@@ -176,8 +295,14 @@
     "manufacturer": "W10861000",
     "description": "Releases detergent during the wash cycle. Faulty doors can prevent soap from dispensing properly.",
     "price": 67.99,
-    "symptoms": ["Detergent not dispensing", "Poor cleaning"],
-    "models": ["KDFE204EBL2", "WDT730PAHW1"],
+    "symptoms": [
+      "Detergent not dispensing",
+      "Poor cleaning"
+    ],
+    "models": [
+      "KDFE204EBL2",
+      "WDT730PAHW1"
+    ],
     "url": "https://www.partselect.com/PS20020008-Dishwasher-Detergent-Dispenser.htm"
   },
   "PS20020009": {
@@ -186,8 +311,14 @@
     "manufacturer": "WPW10195417",
     "description": "This wheel attaches to the lower dish rack and allows it to roll smoothly on the track.",
     "price": 6.49,
-    "symptoms": ["Rack crooked", "Rack hard to slide"],
-    "models": ["WDT710PAHZ", "MDB4949SDZ"],
+    "symptoms": [
+      "Rack crooked",
+      "Rack hard to slide"
+    ],
+    "models": [
+      "WDT710PAHZ",
+      "MDB4949SDZ"
+    ],
     "url": "https://www.partselect.com/PS20020009-Dishwasher-Lower-Rack-Wheel.htm"
   },
   "PS20020010": {
@@ -195,9 +326,16 @@
     "category": "Dishwasher",
     "manufacturer": "W10866116",
     "description": "Manages dishwasher functions such as water level, heating, spray cycles, and display controls.",
-    "price": 159.00,
-    "symptoms": ["Won't start", "Cycle won't finish", "Error codes"],
-    "models": ["WDT920SADM3", "KDTM354ESS2"],
+    "price": 159,
+    "symptoms": [
+      "Won't start",
+      "Cycle won't finish",
+      "Error codes"
+    ],
+    "models": [
+      "WDT920SADM3",
+      "KDTM354ESS2"
+    ],
     "url": "https://www.partselect.com/PS20020010-Dishwasher-Control-Board.htm"
   }
 }
