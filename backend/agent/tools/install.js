@@ -39,8 +39,8 @@ const STATIC_STEPS = {
 // Formats installation instructions in markdown
 function formatInstallMarkdown(partNumber, item, steps) {
   const titleLine = item
-    ? `### Installation Instructions for ${item.title} (${partNumber})\n\n`
-    : `### Installation Instructions for ${partNumber}\n\n`;
+    ? `#### Installation Instructions for ${item.title} (${partNumber})\n\n`
+    : `#### Installation Instructions for ${partNumber}\n\n`;
 
   const safety =
     "**Safety first:** Always disconnect power to the appliance before beginning any repair. " +
@@ -56,7 +56,7 @@ function formatInstallMarkdown(partNumber, item, steps) {
     : "";
 
   const stepsMd =
-    "### Step-by-step:\n" +
+    "#### Step-by-step:\n" +
     steps.map((s, i) => `${i + 1}. ${s}`).join("\n") +
     "\n";
 

@@ -37,7 +37,7 @@ function checkPartToModel(partNumber, modelNumber) {
 
   // compatible
   if (models.includes(modelNumber.toUpperCase())) {
-    return `Yes — **${partNumber} (${item.title})** is listed as compatible with **model ${modelNumber}**.`;
+    return `Yes, **${partNumber} (${item.title})** is listed as compatible with **model ${modelNumber}**.`;
   }
 
   return (
@@ -62,7 +62,7 @@ function whatModelsFitPart(partNumber) {
   }
 
   return (
-    `### Models Compatible with ${partNumber} (${item.title})\n` +
+    `#### Models Compatible with ${partNumber} (${item.title})\n` +
     item.models.map((m) => `• ${m}`).join("\n")
   );
 }
@@ -93,7 +93,7 @@ function partsCompatibleWithModel(modelNumber) {
   }
 
   return (
-    `### Parts Compatible with Model ${modelNumber}\n` +
+    `#### Parts Compatible with Model ${modelNumber}\n` +
     matches.map((m) => `• **${m.part}** — ${m.title}`).join("\n")
   );
 }

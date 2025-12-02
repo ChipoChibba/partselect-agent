@@ -32,7 +32,7 @@ function getTroubleshootInstructions(issueDescription){
     }
     catch(err){
         console.log("Error reading troubleshoot file", err.message);
-        throw new Error;
+        throw new Error();
     }
 }
 module.exports = { getTroubleshootInstructions };

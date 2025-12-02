@@ -25,10 +25,6 @@ function clean(text) {
 
 // scores an item based on keywords and symptom phrase
 function scoreItem(item, partNumber, keywords, fullSymptomPhrase) {
-  const haystack =
-    `${partNumber} ${item.title} ${item.description} ${item.category} ${item.symptoms?.join(" ") || ""}`
-      .toLowerCase();
-
   let score = 0;
 
   // Full symptom phrase match 
