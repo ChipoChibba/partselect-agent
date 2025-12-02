@@ -1,4 +1,4 @@
-### PartSelect AI Helper (Patsy)
+# PartSelect AI Helper (Patsy)
 
 An AI-powered assistant designed to help users search appliance replacement parts, check compatibility, and retrieve installation or troubleshooting instructions for refrigerators and dishwashers.
 
@@ -64,7 +64,7 @@ node index.js
 
 The backend starts at:
 
-``` http://localhost:5000```
+http://localhost:5000
 
 ## Manual Test Request
 
